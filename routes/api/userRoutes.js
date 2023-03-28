@@ -14,7 +14,11 @@ const {
 } = require("../../controllers/userController");
 
 //get, post, delete routes
-router.route("/").get(getAllUsers).post(createNewUser);
+router.route("/user").get(getAllUsers).post((req, res, next) => {
+  console.log("POST request called");
+  createNewUser(req); 
+  res.end();
+});
 
 router.route("/:userId").get(getSingleUser).put(updateUser).delete(deleteUser);
 
