@@ -20,6 +20,19 @@ router.route("/user").get(getAllUsers).post((req, res, next) => {
   res.end();
 });
 
+router.route("/user")
+  .get(function (req, res, next) {
+    console.log("GET request called");
+    getAllUsers(req);
+    res.end();
+  })
+  .post(function (req, res, next) {
+    console.log("POST request called");
+    createNewUser(req); 
+    res.end();
+  });
+
+
 router.route("/:userId").get(getSingleUser).put(updateUser).delete(deleteUser);
 
 router.route("/:userId/friends/:friendId").post(addNewFriend).delete(deleteFriend);
